@@ -6,17 +6,22 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.annotation.OptIn
+
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
 
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 
 
 import com.drag0n.mediavk.databinding.ActivityMoviesBinding
-import com.drag0n.mediavk.domain.Const.INTENT_KEY
+import com.drag0n.mediavk.Const.INTENT_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
+@UnstableApi
 @AndroidEntryPoint
 class MoviesActivity : AppCompatActivity() {
 
@@ -24,15 +29,21 @@ class MoviesActivity : AppCompatActivity() {
     private lateinit var player: ExoPlayer
     private val model: ViewModel by viewModels()
 
+
+
+    @OptIn(UnstableApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkOrientation()
 
         binding = ActivityMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         player = ExoPlayer.Builder(this)
+            .setMediaSourceFactory(DefaultMediaSourceFactory(model.dataSource()))
             .build()
         binding.playerView.player = player
+
 
 
         if (model.videoUrl != null) {
@@ -52,6 +63,11 @@ class MoviesActivity : AppCompatActivity() {
             player.prepare()
             player.play()
         }
+
+
+
+
+
 
     }
     private fun checkOrientation() {

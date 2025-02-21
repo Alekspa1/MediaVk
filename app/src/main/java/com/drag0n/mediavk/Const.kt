@@ -1,4 +1,4 @@
-package com.drag0n.mediavk.domain
+package com.drag0n.mediavk
 
 object Const {
      const val INTENT_KEY = "putexstra"

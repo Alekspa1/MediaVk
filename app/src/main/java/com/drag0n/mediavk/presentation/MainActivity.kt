@@ -2,17 +2,14 @@ package com.drag0n.mediavk.presentation
 
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.media3.common.MediaItem
-import androidx.media3.exoplayer.ExoPlayer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.drag0n.mediavk.databinding.ActivityMainBinding
-import com.drag0n.mediavk.domain.Const.INTENT_KEY
+import com.drag0n.mediavk.Const.INTENT_KEY
 import com.drag0n.mediavk.domain.model.MovieItem
 import com.drag0n.mediavk.presentation.adapters.MoviesAdapter
 
@@ -26,14 +23,13 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnClick {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var adapter: MoviesAdapter
 
-    private lateinit var player: ExoPlayer
 
 
     private val model: ViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        player = ExoPlayer.Builder(this).build()
+        model.getRandomMoview()
 
 
         val rcView = binding.rcView

@@ -10,7 +10,6 @@ import javax.inject.Singleton
 @Singleton
 class MoviesRepositoryImp @Inject constructor(private val api: ApiRepository) : MoviesRepository {
     override suspend fun getRandomMovies() : Movie? {
-        Log.d("MyLog", "fun")
         return if (api.getRandomMovie().isSuccessful) api.getRandomMovie().body()
         else null
     }

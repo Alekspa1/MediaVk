@@ -1,7 +1,7 @@
 package com.drag0n.mediavk.domain
 
 import com.drag0n.mediavk.data.MoviesRepositoryImp
-import com.drag0n.mediavk.domain.Const.BASE_URL
+import com.drag0n.mediavk.Const.BASE_URL
 import com.drag0n.mediavk.domain.repository.ApiRepository
 import com.drag0n.mediavk.domain.repository.MoviesRepository
 import dagger.Module
